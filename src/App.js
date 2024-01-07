@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import Dashboard from './components/Dashboard';
+import Billing from './components/Billing';
+const App = () => {
+  const appStyle = {
+    backgroundColor: 'ultraviolet',
+    // Add more styles as needed
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div style={appStyle}>
+        <Header />
+        <div className="container-fluid">
+          <div className="row">
+            <Sidebar />
+            <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+              <Routes>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/billing" element={<Billing />} />
+                {/* Add more routes as needed */}
+              </Routes>
+            </main>
+          </div>
+        </div>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
